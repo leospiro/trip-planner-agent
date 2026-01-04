@@ -1,15 +1,20 @@
-# Build Stage
-FROM node:16-alpine as build-stage
+# --- Build Stage ---
+# 🟢 升级到 Node 22 以支持最新版 Vite
+FROM node:22-alpine as build-stage
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
+
 COPY . .
 RUN npm run build-only
 
-# Production Stage
+# --- Production Stage ---
 FROM nginx:stable-alpine as production-stage
+
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-# 确保将自定义的 nginx.conf 复制进去
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]
