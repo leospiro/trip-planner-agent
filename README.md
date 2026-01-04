@@ -18,16 +18,28 @@
 ### 核心亮点
 
 - 🤖 **多智能体协作 (Multi-Agent)**：由规划、景点、酒店、天气四个专家 Agent 协作完成。
+
 - 🔌 **MCP 协议集成**：采用 Anthropic 提出的 Model Context Protocol 集成高德地图服务。
+
 - 🗺️ **交互式地图**：生成的行程实时在地图上打点连线，直观呈现。
+
 - 📊 **智能预算估算**：根据实时数据自动计算门票、住宿及餐饮预算。
+
 - 📄 **高清导出**：支持将行程一键导出为精美的 PDF 或长图。
+
+  > 注：
+  >
+  > 本项目属于人工智能原理课程的大作业，早期版本的“作业”性质较厚，Vibe Coding项目，有许多不足的地方，请多包涵。
+  >
+  > 如果您愿意花一些时间体验这个项目并提出批评与改进意见，将会对我的帮助很大。
+  >
+  > 感谢。
 
 ---
 
 ## 🧠 技术架构与工作原理
 
-本项目采用经典的 **前后端分离** 架构，并创新性地引入了 **Agent Mesh** 协作模式。
+本项目采用经典的 **前后端分离** 架构，引入了 **Agent Mesh** 协作模式。
 
 ### 系统架构
 
@@ -205,8 +217,11 @@ helloagents-trip-planner/
 
 本项目是**人工智能原理课程**的期末大作业成果。
 
-- 如果你发现 Bug 或有新的想法，欢迎提交 Issue 或 Pull Request。
-- 喜欢这个项目？请给它一个 ⭐️ Star！
+完成的过程比较匆忙。一开始本来打算加入展示小红书笔记卡片的功能，但是尝试了爬取和RSS订阅，效果都不太好，对用户的门槛也比较高，迫于时间就先没实现了。主要还是为了完成作业，侧重于学习与展示Agent的基础知识，所以一些功能和细节上还是比较粗糙。
+
+- 但如果你觉得这个项目有价值，依旧欢迎给一个(*´∀`)~⭐️ Star！
+
+- 如果你发现 Bug 或有新的想法，欢迎提交 Issue 或 Pull Request。我会积极学习和改进的www
 
 ---
 
@@ -228,13 +243,13 @@ helloagents-trip-planner/
    LLM_API_KEY=your_api_key_here
    LLM_BASE_URL=https://api.deepseek.com
    LLM_TIMEOUT=120
-
+   
    # 高德地图 API Key
    AMAP_API_KEY=your_amap_api_key_here
-
+   
    # Unsplash 图片服务 (可选)
    UNSPLASH_ACCESS_KEY=your_unsplash_access_key_here
-
+   
    # 小红书 RSSHub 配置
    XHS_RSSHUB_BASE_URL=http://localhost:1200
    XHS_RSSHUB_FALLBACK_URL=https://rsshub.app
