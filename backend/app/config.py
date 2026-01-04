@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     llm_model_id: str = os.getenv("LLM_MODEL_ID", "")
     llm_api_key: str = os.getenv("LLM_API_KEY", "")
     llm_base_url: str = os.getenv("LLM_BASE_URL", "")
-    llm_timeout: int = int(os.getenv("LLM_TIMEOUT", 120))
+    llm_timeout: int = int(os.getenv("LLM_TIMEOUT", "120"))
     
     amap_api_key: str = os.getenv("AMAP_API_KEY", "")
     unsplash_access_key: str = os.getenv("UNSPLASH_ACCESS_KEY", "")
