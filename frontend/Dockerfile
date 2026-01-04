@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-RUN npm run build-only
+RUN NODE_OPTIONS=--openssl-legacy-provider npm run build-only
 
 # Stage 2: Production
 FROM nginx:stable-alpine

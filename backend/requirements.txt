@@ -6,3 +6,4 @@ pydantic-settings
 requests
 httpx
 hello-agents
+huggingface-hub
