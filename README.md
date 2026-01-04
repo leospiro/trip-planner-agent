@@ -1,6 +1,6 @@
 # 🌍 智能旅行助手 (HelloAgents Trip Planner)
 
-> 基于 **Multi-Agent 协作**与 **MCP 协议** 的一站式智能行程规划系统。让 AI 为你定制完美的旅行体验。
+> 基于 **Multi-Agent 协作**与 **MCP 协议** 的一站式智能行程规划系统。让 AI 制订旅行计划。
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Vue](https://img.shields.io/badge/Vue-3.x-brightgreen.svg)
@@ -11,7 +11,7 @@
 
 ## ✨ 项目简介
 
-**智能旅行助手** 是一款融合了前沿 AI Agent 技术的旅行规划应用。不同于传统的关键词搜索，它通过模拟人类"旅行规划师"的思维模式，协调多个专业的 AI 智能体分工合作。
+**智能旅行助手** 是一款融合了 AI Agent 技术的旅行规划应用。不同于传统的关键词搜索，它通过模拟人类"旅行规划师"的思维模式，协调多个 AI 智能体分工合作。
 
 用户只需用自然语言输入需求（如："我想去北京玩3天，喜欢历史文化，预算中等"），系统即可自动调度地图搜索、天气查询、酒店比价等工具，生成包含 **景点路线、酒店预订、天气预报、预算估算** 的完整行程方案，并支持 **地图可视化** 与 **PDF/图片导出**。
 
@@ -132,7 +132,7 @@ LLM_BASE_URL=https://api.deepseek.com
 # 高德地图 Web 服务 Key (用于后端 MCP 工具调用)
 AMAP_API_KEY=your_amap_web_service_key
 
-# Unsplash 图片服务 (可选，留空则不显示景点美图)
+# Unsplash 图片服务 (可选，留空则不显示景点图)
 UNSPLASH_ACCESS_KEY=your_unsplash_key
 ```
 
@@ -146,8 +146,8 @@ docker-compose up -d --build
 
 ### 4. 访问应用
 
-- **Web 界面**: 打开浏览器访问 `http://localhost:5173`
-- **API 文档**: 访问 `http://localhost:8000/docs`
+- **Web 界面**: 打开浏览器访问 `http://localhost:3000`
+- **API 文档**: 访问 `http://localhost:18080/docs`
 
 ---
 
@@ -206,8 +206,6 @@ helloagents-trip-planner/
 │   │   ├── services/           # API 封装
 │   │   └── types/              # TypeScript 类型定义
 │   └── package.json            # Node.js 依赖
-├── rsshub/                     # RSSHub 服务配置 (小红书数据源)
-│   └── docker-compose.yml
 └── README.md                   # 项目说明文档
 ```
 
@@ -222,61 +220,6 @@ helloagents-trip-planner/
 - 但如果你觉得这个项目有价值，依旧欢迎给一个(*´∀`)~⭐️ Star！
 
 - 如果你发现 Bug 或有新的想法，欢迎提交 Issue 或 Pull Request。我会积极学习和改进的www
-
----
-
-## 🔐 开源准备与安全
-
-本节指导你如何安全地配置和部署本项目。
-
-### 环境变量配置
-
-1. **复制示例文件**：
-   ```bash
-   cp backend/.env.example backend/.env
-   ```
-
-2. **编辑 `.env` 文件**，填入你的真实密钥：
-   ```env
-   # LLM 配置
-   LLM_MODEL_ID=deepseek-chat
-   LLM_API_KEY=your_api_key_here
-   LLM_BASE_URL=https://api.deepseek.com
-   LLM_TIMEOUT=120
-   
-   # 高德地图 API Key
-   AMAP_API_KEY=your_amap_api_key_here
-   
-   # Unsplash 图片服务 (可选)
-   UNSPLASH_ACCESS_KEY=your_unsplash_access_key_here
-   
-   # 小红书 RSSHub 配置
-   XHS_RSSHUB_BASE_URL=http://localhost:1200
-   XHS_RSSHUB_FALLBACK_URL=https://rsshub.app
-   ```
-
-### 安全注意事项
-
-⚠️ **重要**：
-- `.env` 文件已被 `.gitignore` 忽略，**绝对不要**将其提交到 Git
-- 不要在前端代码中硬编码任何 API Key
-- 不要使用 `VITE_` 前缀暴露后端敏感密钥给前端
-
-### 云平台部署配置
-
-#### Vercel (前端)
-1. 进入项目 Settings → Environment Variables
-2. 添加前端所需的环境变量（如 `VITE_API_BASE_URL`）
-
-#### Railway / Render (后端)
-1. 进入项目 Dashboard → Variables
-2. 添加以下环境变量：
-   - `LLM_MODEL_ID`
-   - `LLM_API_KEY`
-   - `LLM_BASE_URL`
-   - `AMAP_API_KEY`
-   - `UNSPLASH_ACCESS_KEY`
-   - `XHS_RSSHUB_BASE_URL`
 
 ---
 
