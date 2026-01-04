@@ -1,0 +1,47 @@
+services:
+  rsshub:
+    # 使用包含 puppeteer 的镜像，支持更多网站
+    image: diygod/rsshub:chromium-bundled
+    restart: always
+    ports:
+      - '1200:1200'
+    environment:
+      NODE_ENV: production
+      CACHE_TYPE: redis
+      REDIS_URL: 'redis://redis:6379/'
+      CACHE_EXPIRE: 600
+      CACHE_CONTENT_EXPIRE: 3600
+      # 访问控制（可选，防止被滥用）
+      ACCESS_KEY: ${ACCESS_KEY:-}
+      # Puppeteer 配置
+      PUPPETEER_WS_ENDPOINT: ''
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    # 增加内存限制，防止 Chromium 崩溃
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:1200/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  redis:
+    image: redis:alpine
+    restart: always
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  redis-data:
